@@ -1,0 +1,27 @@
+.search-form {
+    padding: 0 25px;
+}
+
+.search-form__input {
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    color: #333;
+    border: 1px solid #999;
+}
+
+.search-form__btn {
+    display: block;
+    width: 100%;
+    margin: 0 auto 10px;
+    padding: 6px;
+    color: #fff;
+    background: #FF5331;
+    border: 1px solid #333;
+    transition: background .25s ease-in-out;
+}
+
+.search-form__btn:hover {
+    background: #ff6040;
+}
