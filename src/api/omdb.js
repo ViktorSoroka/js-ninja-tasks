@@ -1,7 +1,7 @@
 const baseUrl = 'http://www.omdbapi.com/?';
 
 export function search(title, page) {
-  return fetch(`${baseUrl}type=movie&s=${title}&page=${page}r=json`)
+  return fetch(`${baseUrl}type=movie&s=${title}&page=${page}`)
     .then(result => result.json())
     .then(result => {
       if (result.Response === "False") return [];

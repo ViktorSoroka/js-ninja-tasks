@@ -1,8 +1,14 @@
 .list-item {
     display: flex;
-    margin: 10px 25px 0;
-    padding: 10px;
+    font-size: 10px;
+    margin: 0 25px 0;
+    padding: 0 10px;
     background: #b1b4b5;
+}
+
+
+.list-item__title {
+    margin: 0;
 }
 
 .poster {
@@ -10,7 +16,7 @@
 }
 
 .poster__img {
-    width: 100px;
+    width: 10px;
     height: auto;
 }
 
