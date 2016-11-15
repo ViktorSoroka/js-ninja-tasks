@@ -1,16 +1,14 @@
 const baseUrl = 'http://www.omdbapi.com/?';
 
-export function search(title) {
-  return fetch(`${baseUrl}s=${title}&r=json`)
-    .then((res) => res.json())
-    .then((result) => result.Search.map((item) => ({
-      ...item,
-      Poster: item.Poster === 'N/A' ? null : item.Poster,
-    })))
-  ;
-}
+export function search(title, page) {
+  return fetch(`${baseUrl}type=movie&s=${title}&page=${page}r=json`)
+    .then(result => result.json())
+    .then(result => {
+      if (result.Response === "False") return [];
 
-export function getById(id) {
-  return fetch(`${baseUrl}i=${id}&r=json`)
-    .then((res) => res.json());
+      return result.Search.map(item => ({
+        ...item,
+        Poster: item.Poster === 'N/A' ? null : item.Poster,
+      }))
+    });
 }

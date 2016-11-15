@@ -19,14 +19,3 @@
     flex-direction: column;
     text-align: left;
 }
-
-.list-item__btn-modal {
-    width: 100px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    border: 0;
-    background: #d0d0d0;
-}

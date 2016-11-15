@@ -13,10 +13,6 @@ export default class ListItem extends Component {
     });
   };
 
-  handleDetailsClick = () => {
-    this.props.onGetDetailsPressed(this.props.item.imdbID);
-  };
-
   render() {
     const { item } = this.props;
 
@@ -32,8 +28,6 @@ export default class ListItem extends Component {
         <div className="list-item__content">
           <h2 className="list-item__title">{item.Title}</h2>
           <span className="list-item__info">{item.Year}</span>
-          <button className="list-item__btn-modal"
-                  onClick={this.handleDetailsClick}>Show details</button>
         </div>
       </div>
     );

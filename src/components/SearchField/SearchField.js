@@ -1,44 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import './SearchField.css'
+import './SearchField.css';
 
-export default  class Search extends Component {
-  constructor() {
-    super();
+const Search = ({ searchVal, onInputChange, onSearch }) => {
+  return (
+    <form className="search-form"
+          onSubmit={onSearch}>
+      <input className="search-form__input"
+             type="text"
+             value={searchVal}
+             onChange={onInputChange}
+             placeholder="Search..."
+             name="search"/>
+      <button className="search-form__btn"
+              type="submit">Search
+      </button>
+    </form>
+  );
+};
 
-    this.state = {
-      value: '',
-    }
-  }
-
-  onInputChange = event => {
-    this.setState({
-      value: event.target.value,
-    });
-  };
-
-  onSearch = event => {
-    event.preventDefault();
-
-    this.props.onSearch(this.state.value);
-  };
-
-  render() {
-    const { value } = this.state;
-
-    return (
-      <form className="search-form"
-            onSubmit={this.onSearch}>
-        <input className="search-form__input"
-               type="text"
-               value={value}
-               onChange={this.onInputChange}
-               placeholder="Search..."
-               name="search"/>
-        <button className="search-form__btn"
-                type="submit">Search
-        </button>
-      </form>
-    );
-  }
-}
+export default Search;

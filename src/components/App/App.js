@@ -1,59 +1,66 @@
 import React, { Component } from 'react';
 
-import ListItem    from '../ListItem/ListItem';
+import List        from '../List/List';
 import SearchField from '../../components/SearchField/SearchField';
-import FilmInfo    from '../FilmInfo/FilmInfo';
+import { search }  from '../../api/omdb';
 
-import {
-  getById,
-  search
-}           from '../../api/omdb';
 import './App.css';
 
 
 export default class App extends Component {
   constructor() {
     super();
+
     this.state = {
-      itemId: null,
-      items : [],
+      searchVal: '',
+      page     : 1,
+      items    : [],
     };
   }
 
   componentDidMount() {
-    getById('tt2407380').then((result) => {
-      this.setState({ item: result });
-    });
   }
 
-  onGetDetailsPressed = itemId => this.setState({
-    itemId
-  });
+  onInputChange = event => {
+    this.setState({
+      searchVal: event.target.value,
+    });
+  };
 
-  onSearch = (value) => {
-    search(value).then(result => this.setState({
-      items: result
+  onSearch = event => {
+    event.preventDefault();
+
+    const { page, searchVal } = this.state;
+
+    search(searchVal, page).then(result => this.setState({
+      items: result,
+      page : page + 1,
+    }));
+  };
+
+  loadMoreItems = () => {
+    const { page, items, searchVal } = this.state;
+
+    search(searchVal, page).then(result => this.setState({
+      items: items.concat(result),
+      page : page + 1,
     }));
   };
 
   render() {
-    const { items, itemId } = this.state;
+    const { items, searchVal } = this.state;
 
     return (
       <div className="app">
         <div className="app-header">
           <h2>Infinity scroll</h2>
         </div>
-        <SearchField onSearch={this.onSearch}/>
-
-        {items.map(file =>
-          <ListItem
-            item={file}
-            onGetDetailsPressed={this.onGetDetailsPressed}
-            key={file.imdbID}/>
-        )}
-
-        <FilmInfo itemId={itemId}/>
+        <SearchField searchVal={searchVal}
+                     onSearch={this.onSearch}
+                     onInputChange={this.onInputChange}/>
+        <List items={items}
+              loadMoreItems={this.loadMoreItems}
+        />
       </div>
     );
   }
