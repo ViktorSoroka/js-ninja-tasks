@@ -3,20 +3,21 @@ import React, { Component } from 'react';
 import ListItem    from '../ListItem/ListItem';
 import SearchField from '../../components/SearchField/SearchField';
 import FilmInfo    from '../FilmInfo/FilmInfo';
+import Burger      from '../Burger/Burger'
 
 import {
   getById,
   search
-}           from '../../api/omdb';
-import './App.css';
+} from '../../api/omdb';
 
+import './App.css';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      itemId: null,
-      items : [],
+      showBurgerContent: false,
+      items            : []
     };
   }
 
@@ -44,16 +45,18 @@ export default class App extends Component {
         <div className="app-header">
           <h2>Infinity scroll</h2>
         </div>
-        <SearchField onSearch={this.onSearch}/>
+        <Burger>
+          <SearchField onSearch={this.onSearch}/>
 
-        {items.map(file =>
-          <ListItem
-            item={file}
-            onGetDetailsPressed={this.onGetDetailsPressed}
-            key={file.imdbID}/>
-        )}
+          {items.map(file =>
+            <ListItem
+              item={file}
+              onGetDetailsPressed={this.onGetDetailsPressed}
+              key={file.imdbID}/>
+          )}
 
-        <FilmInfo itemId={itemId}/>
+          <FilmInfo itemId={itemId}/>
+        </Burger>
       </div>
     );
   }
