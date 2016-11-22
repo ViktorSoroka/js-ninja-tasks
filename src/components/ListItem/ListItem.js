@@ -7,9 +7,7 @@ export default class ListItem extends Component {
   createPosterLightBox = element => {
     $(element).magnificPopup({
       type : 'image',
-      items: {
-        src: this.props.item.Poster,
-      },
+      items: { src: this.props.item.Poster }
     });
   };
 
@@ -32,7 +30,7 @@ export default class ListItem extends Component {
         <div className="list-item__content">
           <h2 className="list-item__title">{item.Title}</h2>
           <span className="list-item__info">{item.Year}</span>
-          <button className="list-item__btn-modal"
+          <button className="list-item__btn"
                   onClick={this.handleDetailsClick}>Show details</button>
         </div>
       </div>

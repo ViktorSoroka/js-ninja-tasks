@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 
 import './SearchField.css'
 
+
 export default  class Search extends Component {
   constructor() {
     super();
 
-    this.state = {
-      value: '',
-    }
+    this.state = { value: '' }
   }
 
   onInputChange = event => {
-    this.setState({
-      value: event.target.value,
-    });
+    this.setState({ value: event.target.value });
   };
 
   onSearch = event => {

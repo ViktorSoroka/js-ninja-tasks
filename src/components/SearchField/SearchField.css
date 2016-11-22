@@ -1,11 +1,12 @@
 .search-form {
-    padding: 0 25px;
 }
 
 .search-form__input {
     display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
-    margin: 10px auto;
     padding: 10px;
     color: #333;
     border: 1px solid #999;
@@ -13,8 +14,11 @@
 
 .search-form__btn {
     display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
-    margin: 0 auto 10px;
+    margin: 10px auto 0;
     padding: 6px;
     color: #fff;
     background: #FF5331;

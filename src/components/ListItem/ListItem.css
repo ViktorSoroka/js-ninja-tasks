@@ -1,7 +1,6 @@
 .list-item {
     display: flex;
-    margin: 10px 25px 0;
-    padding: 10px;
+    margin: 10px 0;
     background: #b1b4b5;
 }
 
@@ -20,7 +19,7 @@
     text-align: left;
 }
 
-.list-item__btn-modal {
+.list-item__btn {
     width: 100px;
     margin-top: 10px;
     padding: 5px 10px;

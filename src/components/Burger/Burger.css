@@ -1,0 +1,18 @@
+.burger {
+    position: absolute;
+    top: 0;
+    text-align: left;
+    background: #fff;
+}
+
+.burger__btn-toggler {
+    margin: 20px 20px 0;
+}
+
+.burger__content {
+    width: 50vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: auto;
+}
