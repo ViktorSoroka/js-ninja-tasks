@@ -13,6 +13,10 @@ export default class Burger extends Component {
 
   closeBurgerHandler = event => {
     const eventTarget         = event.target;
+
+    // handle magnific popup
+    if ($(eventTarget).closest('.mfp-wrap').length) return;
+
     const isClickInsideBurger = !!$(eventTarget).closest('.burger').length;
 
     if (!isClickInsideBurger && eventTarget !== this.btnToggler || eventTarget.classList.contains('list-item__btn')) {
