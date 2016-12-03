@@ -26,7 +26,6 @@ export default class FilmInfo extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { item, loading } = this.state;
 
     return (

@@ -12,7 +12,7 @@ export default class Burger extends Component {
   }
 
   closeBurgerHandler = event => {
-    const eventTarget         = event.target;
+    const eventTarget = event.target;
 
     // handle magnific popup
     if ($(eventTarget).closest('.mfp-wrap').length) return;

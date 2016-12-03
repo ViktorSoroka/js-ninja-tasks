@@ -13,6 +13,7 @@ import './App.css';
 export default class App extends Component {
   constructor() {
     super();
+
     this.state = {
       items : [],
       itemId: null

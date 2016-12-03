@@ -7,7 +7,7 @@ export default  class Search extends Component {
   constructor() {
     super();
 
-    this.state = { value: '' }
+    this.state = { value: '' };
   }
 
   onInputChange = event => {
