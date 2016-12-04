@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { getById } from '../../api/omdb';
 
@@ -10,16 +10,24 @@ export default class FilmInfo extends Component {
   constructor() {
     super();
 
-    this.state = {
-      item   : null,
-      loading: false
-    }
+    this.state = this.getDefaultState();
   }
 
-  componentWillReceiveProps(nextProps) {
+  getDefaultState() {
+    return {
+      item   : null,
+      loading: false
+    };
+  }
+
+  componentWillReceiveProps({ itemId }) {
     this.setState({ loading: true });
 
-    getById(nextProps.itemId).then(result => this.setState({
+    if (itemId === null) {
+      return this.setState(this.getDefaultState());
+    }
+
+    getById(itemId).then(result => this.setState({
       item   : result,
       loading: false
     }));
@@ -35,7 +43,7 @@ export default class FilmInfo extends Component {
             <img src={logo} className="app-logo" alt="logo"/>
           </div> : !item ? <div>Please select any film</div> :
           <div>
-            <img src={item.Poster}/>
+            <img src={item.Poster} alt={item.Title}/>
             <div>
               <h1 className="film-info__title">{item.Title}</h1>
               <span className="film-info__details">{item.Actors}</span>
@@ -46,4 +54,8 @@ export default class FilmInfo extends Component {
       </div>
     );
   }
+
+  static propTypes = {
+    itemId: PropTypes.string
+  };
 }

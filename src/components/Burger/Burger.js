@@ -1,26 +1,18 @@
 /* global $ */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import './Burger.css';
 
 
 export default class Burger extends Component {
-  constructor() {
-    super();
-
-    this.state = { showContent: false };
-  }
-
-  closeBurgerHandler = event => {
-    const eventTarget = event.target;
-
+  closeBurgerHandler = ({ target }) => {
     // handle magnific popup
-    if ($(eventTarget).closest('.mfp-wrap').length) return;
+    if ($(target).closest('.mfp-wrap').length) return;
 
-    const isClickInsideBurger = !!$(eventTarget).closest('.burger').length;
+    const isClickInsideBurger = !!$(target).closest('.burger').length;
 
-    if (!isClickInsideBurger && eventTarget !== this.btnToggler || eventTarget.classList.contains('list-item__btn')) {
-      return this.setState({ showContent: false });
+    if (!isClickInsideBurger && target !== this.btnToggler || target.classList.contains('list-item__btn')) { //eslint-disable-line no-mixed-operators
+      return this.props.hideContent();
     }
   };
 
@@ -39,14 +31,16 @@ export default class Burger extends Component {
   onBurgerTogglerClick = event => {
     event.nativeEvent.stopImmediatePropagation();
 
-    this.setState({ showContent: true });
+    this.props.showContent();
   };
 
   render() {
+    const { isContentShown, children } = this.props;
+
     return (
       <div className="burger">
-        {this.state.showContent ?
-          <div className="burger__content">{this.props.children}</div> :
+        {isContentShown ?
+          <div className="burger__content">{children}</div> :
           <button className="burger__btn-toggler"
                   type="button"
                   ref={this.getBurgerToggler}
@@ -55,4 +49,11 @@ export default class Burger extends Component {
       </div>
     );
   }
+
+  static propTypes = {
+    isContentShown: PropTypes.bool.isRequired,
+    children      : PropTypes.node,
+    hideContent   : PropTypes.func.isRequired,
+    showContent   : PropTypes.func.isRequired,
+  };
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+import Layout      from '../Layout/Layout';
 import ListItem    from '../ListItem/ListItem';
 import SearchField from '../../components/SearchField/SearchField';
 import FilmInfo    from '../FilmInfo/FilmInfo';
-import Burger      from '../Burger/Burger'
 
 import { search } from '../../api/omdb';
 
@@ -23,30 +23,35 @@ export default class App extends Component {
   onGetDetailsPressed = itemId => this.setState({ itemId });
 
   onSearch = value => {
+    if (!value) {
+      return this.setState({
+        items : [],
+        itemId: null
+      });
+    }
+
     search(value).then(result => this.setState({ items: result }));
   };
 
   render() {
     const { items, itemId } = this.state;
 
-    return (
-      <div className="app">
-        <Burger>
-          <div>
-            <SearchField onSearch={this.onSearch}/>
+    const sidebar = <div>
+        <SearchField onSearch={this.onSearch}/>
+        <div className="movie-list">
+          {items.map(file =>
+            <ListItem
+              item={file}
+              onGetDetailsPressed={this.onGetDetailsPressed}
+              key={file.imdbID}/>
+          )}
+        </div>
+    </div>;
 
-            <div className="movie-list">
-              {items.map(file =>
-                <ListItem
-                  item={file}
-                  onGetDetailsPressed={this.onGetDetailsPressed}
-                  key={file.imdbID}/>
-              )}
-            </div>
-          </div>
-        </Burger>
+    return (
+      <Layout sidebar={sidebar}>
         <FilmInfo itemId={itemId}/>
-      </div>
+      </Layout>
     );
   }
 }

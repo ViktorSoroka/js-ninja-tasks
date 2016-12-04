@@ -1,5 +1,5 @@
 /* global $ */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import './ListItem.css';
 
@@ -32,9 +32,19 @@ export default class ListItem extends Component {
           <h2 className="list-item__title">{item.Title}</h2>
           <span className="list-item__info">{item.Year}</span>
           <button className="list-item__btn"
-                  onClick={this.handleDetailsClick}>Show details</button>
+                  onClick={this.handleDetailsClick}>Show details
+          </button>
         </div>
       </div>
     );
   }
+
+  static propTypes = {
+    item: PropTypes.shape({
+      imdbID: PropTypes.string.isRequired,
+      Title : PropTypes.string.isRequired,
+      Poster: PropTypes.string.isRequired,
+      Year  : PropTypes.string.isRequired,
+    }).isRequired
+  };
 }

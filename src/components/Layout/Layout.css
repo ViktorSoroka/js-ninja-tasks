@@ -1,0 +1,9 @@
+.app {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+.app__main {
+    width: 50%;
+}
